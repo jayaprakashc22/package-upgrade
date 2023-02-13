@@ -1,0 +1,22 @@
+#!/usr/bin/expect
+#spawn /home/ubuntu/Workspace/sdmain/diff_create.sh b8.0
+set timeout -1
+set branch [lindex $argv 0]
+spawn /home/ubuntu/Workspace/sdmain/diff_create.sh $branch
+expect "Ignore these untracked files and continue?"
+send -- "Y\r"
+send -- "gg\r"
+send -- "dG\r"
+#expect "package upgrades" exp_continue
+#send -- "PPackage upgrade for libpixman\r\r"
+send -- "SSummary: Package upgrade for libpixman\r\r"
+send -- "Test Plan: arc sail\r\r"
+send -- "Reviewers: \r\r"
+send -- "Subscribers: \r\r"
+send -- "Tags: \r\r"
+send -- "JIRA Issues: \r\r"
+send -- "Revert Plan: \r\r"
+send -- "\x1b\r"
+send -- ":wq\r"
+interact
+#expect eof
